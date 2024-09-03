@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Link Bypasser</title>
+    <title>kj bypass reborn</title>
     <style>
         body {
             margin: 0;
@@ -92,6 +92,21 @@
             background: #0056b3;
             transform: scale(1.1);
         }
+        .source-btn, .made-by-btn {
+            margin-top: 10px;
+            padding: 12px 24px;
+            border: none;
+            border-radius: 4px;
+            background: #ff5733;
+            color: #fff;
+            font-size: 16px;
+            cursor: pointer;
+            transition: background 0.3s, transform 0.3s;
+        }
+        .source-btn:hover, .made-by-btn:hover {
+            background: #c70039;
+            transform: scale(1.05);
+        }
     </style>
 </head>
 <body>
@@ -100,6 +115,8 @@
         <input type="text" id="linkInput" placeholder="Enter link here">
         <button onclick="bypassLink()">Bypass Link</button>
         <div id="result" class="result"></div>
+        <button class="source-btn" onclick="window.open('https://github.com/bubskqq4/website-bypass-video/blob/main/index.html', '_blank')">Source Code</button>
+        <button class="made-by-btn" onclick="window.open('https://www.youtube.com/@Bobrbrplaysthis', '_blank')">Made by</button>
     </div>
     <script>
         function bypassLink() {
@@ -112,14 +129,14 @@
                         if (data.bypassed) {
                             resultDiv.innerHTML = '<span><strong>Result:</strong> ' + data.bypassed + '</span><button class="copy-btn" onclick="copyToClipboard(\'' + data.bypassed + '\')">Copy</button>';
                         } else {
-                            resultDiv.innerHTML = '<strong>Error:</strong> Failed to bypass the link.';
+                            resultDiv.innerHTML = '<strong>Error:</strong> could not bypass.';
                         }
                     })
                     .catch(() => {
-                        resultDiv.innerHTML = '<strong>Error:</strong> Unable to connect to the API.';
+                        resultDiv.innerHTML = '<strong>Error:</strong> API not working.';
                     });
             } else {
-                resultDiv.innerHTML = '<strong>Error:</strong> Please enter a link.';
+                resultDiv.innerHTML = '<strong>Error:</strong> no link.';
             }
         }
 
@@ -127,7 +144,7 @@
             navigator.clipboard.writeText(text).then(() => {
                 alert('Link copied to clipboard!');
             }, () => {
-                alert('Failed to copy');
+                alert('Error try later');
             });
         }
     </script>
