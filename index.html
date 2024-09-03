@@ -8,43 +8,60 @@
         body {
             margin: 0;
             padding: 0;
-            font-family: Arial, sans-serif;
-            background: linear-gradient(to right, #141e30, #243b55);
+            font-family: 'Trebuchet MS', Arial, sans-serif;
+            background: linear-gradient(to right, #000428, #004e92);
             color: #fff;
             display: flex;
             justify-content: center;
             align-items: center;
             height: 100vh;
+            background-image: url('https://www.transparenttextures.com/patterns/dark-matter.png');
+            background-size: cover;
+            background-attachment: fixed;
+            overflow: hidden;
         }
         .container {
             text-align: center;
-            background: rgba(0, 0, 0, 0.7);
+            background: rgba(0, 0, 0, 0.85);
             padding: 30px;
-            border-radius: 8px;
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+            border-radius: 12px;
+            box-shadow: 0 8px 30px rgba(0, 0, 0, 0.6);
             width: 400px;
+            backdrop-filter: blur(5px);
+        }
+        h2 {
+            font-size: 24px;
+            margin-bottom: 20px;
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
         }
         input[type="text"] {
             width: 100%;
-            padding: 10px;
+            padding: 12px;
             margin-bottom: 20px;
             border: none;
             border-radius: 4px;
             outline: none;
             font-size: 16px;
+            background: rgba(255, 255, 255, 0.1);
+            color: #fff;
+        }
+        input[type="text"]::placeholder {
+            color: #ddd;
         }
         button {
-            padding: 10px 20px;
+            padding: 12px 24px;
             border: none;
             border-radius: 4px;
             background: #1f78ff;
             color: #fff;
             font-size: 16px;
             cursor: pointer;
-            transition: background 0.3s;
+            transition: background 0.3s, transform 0.3s;
         }
         button:hover {
             background: #0056b3;
+            transform: scale(1.05);
         }
         .result {
             margin-top: 20px;
@@ -56,22 +73,24 @@
             display: flex;
             align-items: center;
             justify-content: space-between;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
         }
         .result span {
             flex-grow: 1;
         }
         .copy-btn {
             margin-left: 10px;
-            padding: 5px 10px;
+            padding: 6px 12px;
             border: none;
             border-radius: 4px;
             background: #1f78ff;
             color: #fff;
             cursor: pointer;
-            transition: background 0.3s;
+            transition: background 0.3s, transform 0.3s;
         }
         .copy-btn:hover {
             background: #0056b3;
+            transform: scale(1.1);
         }
     </style>
 </head>
@@ -93,22 +112,22 @@
                         if (data.bypassed) {
                             resultDiv.innerHTML = '<span><strong>Result:</strong> ' + data.bypassed + '</span><button class="copy-btn" onclick="copyToClipboard(\'' + data.bypassed + '\')">Copy</button>';
                         } else {
-                            resultDiv.innerHTML = '<strong>error:</strong> failed to bypass the link.';
+                            resultDiv.innerHTML = '<strong>Error:</strong> Failed to bypass the link.';
                         }
                     })
                     .catch(() => {
-                        resultDiv.innerHTML = '<strong>Error:</strong> unable to connect to the api.';
+                        resultDiv.innerHTML = '<strong>Error:</strong> Unable to connect to the API.';
                     });
             } else {
-                resultDiv.innerHTML = '<strong>error:</strong> please enter a link.';
+                resultDiv.innerHTML = '<strong>Error:</strong> Please enter a link.';
             }
         }
 
         function copyToClipboard(text) {
             navigator.clipboard.writeText(text).then(() => {
-                alert('link copied to clipboard!');
+                alert('Link copied to clipboard!');
             }, () => {
-                alert('failed to copy');
+                alert('Failed to copy');
             });
         }
     </script>
